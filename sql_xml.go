@@ -162,30 +162,27 @@ func main() {
 	for _, file := range xfiles {
 
 		file := strings.ReplaceAll(file, "\\", "/")
-		// var printFileNameflag = false
 		fmt.Printf("当前处理的文件为：%s\n", file)
 
-		selectSql, _, _, _ := processFile(file)
+		selectSql, updateSql, deleteSql, _ := processFile(file)
 
 		for _, v := range selectSql {
-			if strings.Contains(v, "product_bill_detail ") {
-				// printFileNameflag = true
+			if strings.Contains(v, "bank_acct_trade_detail") {
 				fmt.Println(v)
 			}
 		}
-		// if printFileNameflag {
-		// 	fmt.Println(file)
-		// }
+
+		for _, v := range updateSql {
+			if strings.Contains(v, "bank_acct_trade_detail") {
+				fmt.Println(v)
+			}
+		}
+
+		for _, v := range deleteSql {
+			if strings.Contains(v, "bank_acct_trade_detail") {
+				fmt.Println(v)
+			}
+		}
 	}
-
-	// var file string = "D:/JoyoProject/smarthr-financing/smarthr-finance/src/main/resources/mapper/trade/FincBankAcctTradeDetailMapper.xml"
-
-	// selectSql, _, _, _ := processFile(file)
-
-	// for _, v := range selectSql {
-	// 	if strings.Contains(v, "bank_acct_trade_detail") {
-	// 		fmt.Println(v)
-	// 	}
-	// }
 
 }
